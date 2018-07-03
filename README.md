@@ -13,6 +13,27 @@ Usage:       gaode-api-intersection
              gaode-api-intersection searchOne
 ```
 
+## Config Usage
+> To config gaode key
+
+### get a gaode key
+
+visit [gaode developer platform](https://lbs.amap.com/dev/key/app) to get a new `Web API key`.
+
+### set gaode key
+
+```shell
+> gaode-api-config set-key <key>
+```
+
+### get gaode key
+
+```shell
+> gaode-api-config get-key
+
+<gaode-key-will-display>
+```
+
 ## Intersection Usage
 > Searching for intersection information from Gaode [Search API](https://lbs.amap.com/api/webservice/guide/api/search/?)
 

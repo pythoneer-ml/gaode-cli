@@ -2,22 +2,28 @@
 # -*- coding: utf-8 -*-
 
 import fire
+import os
+import json
 import re
 import json
 import urllib3
 import csv
 http = urllib3.PoolManager()
+config_file_path = os.path.join(os.path.split(__file__)[0], 'config.json')
+default_fields = {}
 
 class GaodeIntersection:
   def __init__(self):
-    self.gaode_key = '8b910cbfe87407ec3365253c81e43966'
-    self.default_fields = {
-      'key': '8b910cbfe87407ec3365253c81e43966',
+    config_meta = {}
+    with open(config_file_path, 'r') as f:
+      config_meta = json.loads(f.read())
+    self.__default_fields = {
+      'key': config_meta['key']
     }
     pass
 
   def searchOne(self, keywords, city='杭州'):
-    fields = self.default_fields.copy()
+    fields = self.__default_fields.copy()
     fields['city'] = city
     fields['keywords'] = keywords
 
@@ -66,15 +72,6 @@ class GaodeIntersection:
             for k in keys[2:]:
               row.append(meta[k])
           i += 1
-          # print(
-          #   json.dumps(
-          #     result,
-          #     sort_keys=True,
-          #     indent=2, 
-          #     separators=(',', ': '),
-          #     ensure_ascii=False
-          #   )
-          # )
           
           writer.writerow(row)
           pass

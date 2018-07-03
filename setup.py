@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gaode_api_cli',
-    version='0.0.2',
+    version='0.0.3',
     description=(
       '简易高德API命令行工具'
     ),
@@ -18,6 +18,7 @@ setup(
     packages=find_packages(),
     platforms=["all"],
     url='https://github.com/pythoneer-ml/pypi-gaode-api',
+    include_package_data=True,
     install_requires=[
         'fire>=0.1.3',
         'urllib3>=1.22'
