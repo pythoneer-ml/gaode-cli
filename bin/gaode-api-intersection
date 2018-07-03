@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import fire
+from gaode_api_cli import intersection
+
+if __name__ == '__main__':
+  fire.Fire(intersection.GaodeIntersection)
+
