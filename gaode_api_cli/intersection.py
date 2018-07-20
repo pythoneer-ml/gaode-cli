@@ -42,15 +42,15 @@ class GaodeIntersection:
 
     result = None
     try:
-      req = http.request('GET', 'http://restapi.amap.com/v3/place/text',fields=fields)
+      req = http.request('GET', 'http://restapi.amap.com/v3/place/text',fields=fields,timeout=10)
       result = json.loads(req.data.decode('utf-8'))
     except Exception as e:
       print('got exception: ', e)
 
     return result
   
-  def searchByFile(self, input_file_name, output_file_name='output.csv'):
-    delimiter = r'[;,\s]'
+  def searchByFile(self, input_file_name, output_file_name='output.csv', has_header=False, delimiter='$'):
+    rowDelimiter = r'[;,\s]'
     keys = [
       'id',
       'origin',
@@ -63,19 +63,26 @@ class GaodeIntersection:
       'typecode'
     ]
     with open(output_file_name, 'w') as csv_file:
-      writer = csv.writer(csv_file, delimiter=',')
+      writer = csv.writer(csv_file, delimiter=delimiter)
       writer.writerow(keys)
-      i = 0
       with open(input_file_name, 'rt', encoding='utf-8') as f:
+        i = 0
+        startRow = 0
+        if has_header:
+          startRow = 1
         for line in f:
-          splits = re.split(delimiter, line.strip())
+          i += 1
+          if not (i > startRow):
+            continue
+          splits = re.split(rowDelimiter, line.strip())
           key = splits[0]
           if len(splits) > 1:
             searchValue = splits[1]
           else:
             searchValue = splits[0]
           result = self.searchOne(searchValue)
-          print('line ==> ', i, line.strip().encode('utf-8').decode('utf-8'))
+          print('lineNum => ', i)
+          print('content => ', line.strip().encode('utf-8').decode('utf-8'))
           # result = self.searchIntersection(line.strip())
           row = [
             key,
@@ -89,7 +96,6 @@ class GaodeIntersection:
             meta = result['pois'][0]
             for k in keys[2:]:
               row.append(meta[k])
-          i += 1
           
           writer.writerow(row)
           pass

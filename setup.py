@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gaode_api_cli',
-    version='0.1.0',
+    version='0.1.1',
     description=(
       '简易高德API命令行工具'
     ),
