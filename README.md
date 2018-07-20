@@ -1,6 +1,8 @@
 # pypi-gaode-api
 pypi tools for gaode api, https://lbs.amap.com/api/webservice/summary
 
+Tips: only can be used after python version 3.0.
+
 ## Install
 
 ```shell
@@ -52,10 +54,21 @@ visit [gaode developer platform](https://lbs.amap.com/dev/key/app) to get a new 
 
 1. edit `input.txt` in current dir.
 
+keywords without id
+
 ```
 天目山路高教路口
 文一西路高教路口
 ...
+```
+
+keywords with id is supported
+
+```
+001 天目山路高教路口
+002 文一西路高教路口
+003 ...
+... ...
 ```
 
 2. execute command like below.
