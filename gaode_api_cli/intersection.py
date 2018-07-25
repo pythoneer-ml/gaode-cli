@@ -31,7 +31,7 @@ class GaodeIntersection:
       config_meta = json.loads(f.read())
     self.__default_fields = {
       'key': config_meta['key'],
-      'types': '190302|190303|190304|190305|190306|190308|190309' # 路口类型
+      'types': '190302' # |190303|190304|190305|190306|190308|190309' # 路口类型
     }
     pass
 

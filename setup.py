@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='gaode_api_cli',
-    version='0.1.1',
+    version='0.1.2',
     description=(
       '简易高德API命令行工具'
     ),
@@ -24,7 +24,8 @@ setup(
         'urllib3>=1.22'
     ],
     scripts=[
-      'bin/gaode-api-intersection'
+      'bin/gaode-api-intersection',
+      'bin/gaode-api-config'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
