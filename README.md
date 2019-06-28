@@ -44,9 +44,9 @@ visit [gaode developer platform](https://lbs.amap.com/dev/key/app) to get a new 
 ```shell
 > gaode-api-intersection searchOne 天目山路
 
-> gaode-api-intersection searchOne 天目山路 hanzhou
+> gaode-api-intersection searchOne 天目山路 hangzhou
 
-> gaode-api-intersection searchOne 天安门 hanzhou
+> gaode-api-intersection searchOne 天安门 hangzhou
 ```
 
 ### searchByFile
