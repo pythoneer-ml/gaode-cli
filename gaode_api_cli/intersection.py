@@ -35,10 +35,12 @@ class GaodeIntersection:
     }
     pass
 
-  def searchOne(self, keywords, city=u'杭州'):
+  def searchOne(self, keywords, city=u'杭州', types=None):
     fields = self.__default_fields.copy()
     fields['city'] = city.encode('utf-8')
     fields['keywords'] = keywords.encode('utf-8')
+    if types is not None:
+      fields['types'] = types
 
     result = None
     try:
@@ -49,7 +51,7 @@ class GaodeIntersection:
 
     return result
   
-  def searchByFile(self, input_file_name, output_file_name='output.csv', has_header=False, delimiter='$'):
+  def searchByFile(self, input_file_name, output_file_name='output.csv', has_header=False, delimiter='$', city=u'杭州', types=None):
     rowDelimiter = r'[;,\s]'
     keys = [
       'id',
@@ -80,7 +82,7 @@ class GaodeIntersection:
             searchValue = splits[1]
           else:
             searchValue = splits[0]
-          result = self.searchOne(searchValue)
+          result = self.searchOne(searchValue, city, types)
           print('lineNum => ', i)
           print('content => ', line.strip().encode('utf-8').decode('utf-8'))
           # result = self.searchIntersection(line.strip())
